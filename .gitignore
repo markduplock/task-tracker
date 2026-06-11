@@ -1,0 +1,15 @@
+# Editor settings
+.vscode/
+.idea/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Dependencies and build output, if added later
+node_modules/
+dist/

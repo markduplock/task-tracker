@@ -8,30 +8,31 @@ function addItem() {
   if (!itemText) {
     alert("Input cannot be empty");
   } else {
-    const newListItem = document.createElement("li");
     const newCheckBox = document.createElement("input");
+    const newListItem = document.createElement("li");
     const newDeleteButton = document.createElement("button");
 
     newCheckBox.type = "checkbox";
-    newListItem.textContent = itemText;
+
     newDeleteButton.textContent = "Delete Task";
 
-    list.appendChild(newListItem);
-    newListItem.appendChild(newCheckBox);
-    newListItem.appendChild(newDeleteButton);
-    checkItem(newCheckBox, newListItem);
+    list.append(newListItem);
+    newListItem.append(newCheckBox);
+    newListItem.append(itemText);
+    newListItem.append(newDeleteButton);
+    checkItem(newCheckBox, itemText);
     deleteItem(newDeleteButton, newListItem);
   }
   inputField.value = "";
   inputField.focus();
 }
 
-function checkItem(newCheckBox, newListItem) {
-  newCheckBox.addEventListener("change", (event) => {
+function checkItem(checkBox, itemText) {
+  checkBox.addEventListener("change", (event) => {
     if (event.target.checked) {
-      newListItem.style.textDecoration = "line-through";
+      itemText.style.textDecoration = "line-through";
     } else {
-      newListItem.style.textDecoration = "none";
+      itemText.style.textDecoration = "none";
     }
   });
 }

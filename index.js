@@ -1,6 +1,8 @@
 const inputField = document.getElementById("add-list-item");
 const list = document.getElementById("list");
 const addItemForm = document.getElementById("add-item-form");
+const deleteSection = document.getElementById("delete-selected-button");
+let selectionCount = 0;
 
 function addItem() {
   const itemText = inputField.value.trim();
@@ -20,20 +22,27 @@ function addItem() {
     newListItem.append(newCheckBox);
     newListItem.append(itemText);
     newListItem.append(newDeleteButton);
-    checkItem(newCheckBox, itemText);
+    checkItem(newCheckBox, newListItem);
     deleteItem(newDeleteButton, newListItem);
   }
   inputField.value = "";
   inputField.focus();
 }
 
-function checkItem(checkBox, itemText) {
+function checkItem(checkBox, listItem) {
   checkBox.addEventListener("change", (event) => {
-    if (event.target.checked) {
-      itemText.style.textDecoration = "line-through";
+    if (checkBox.checked) {
+      selectionCount++;
+      if (selectionCount > 0) {
+        deleteSection.disabled = false;
+      }
     } else {
-      itemText.style.textDecoration = "none";
+      selectionCount--;
+      if (selectionCount < 1) {
+        deleteSection.disabled = true;
+      }
     }
+    console.log(selectionCount);
   });
 }
 
@@ -43,7 +52,14 @@ function deleteItem(newDeleteButton, newListItem) {
   });
 }
 
+function deleteSelection() {}
+
 addItemForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addItem();
+});
+
+deleteSection.addEventListener("click", (event) => {
+  event.preventDefault();
+  deleteSelection();
 });

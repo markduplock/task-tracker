@@ -36,12 +36,12 @@ function checkItem(checkBox) {
     if (checkBox.checked) {
       selectionCountContent++;
       if (selectionCountContent > 0) {
-        deleteSelection.disabled = false;
+        bulkDeleteButtonDisabled(false);
       }
     } else {
       selectionCountContent--;
       if (selectionCountContent < 1) {
-        deleteSelection.disabled = true;
+        bulkDeleteButtonDisabled(true);
       }
     }
     selectionCount.textContent = selectionCountContent;
@@ -55,7 +55,7 @@ function deleteItem(deleteButton, listItem, checkbox) {
     if (checkbox.checked) {
       selectionCountContent--;
       if (selectionCountContent < 1) {
-        deleteSelection.disabled = true;
+        bulkDeleteButtonDisabled(true);
       }
       selectionCount.textContent = selectionCountContent;
     }
@@ -63,6 +63,10 @@ function deleteItem(deleteButton, listItem, checkbox) {
     // ** DEBUG **
     //console.log(selectionCountText);
   });
+}
+
+function bulkDeleteButtonDisabled(state) {
+  deleteSelection.disabled = state;
 }
 
 addItemForm.addEventListener("submit", (event) => {

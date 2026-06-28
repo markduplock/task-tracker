@@ -1,12 +1,11 @@
-# DOM Task Tracker
+# Task Tracker
 
-## Goal
-
-Create a small web app where you can:
+Create a small web app that lets you:
 
 - Add tasks
 - Mark tasks as complete/incomplete
 - Delete tasks
+- Bulk delete tasks
 - Filter tasks:
   - all
   - active
